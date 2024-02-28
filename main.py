@@ -1,7 +1,14 @@
+from fastapi.responses import FileResponse
 import uvicorn
 from fastapi import FastAPI
 
 app = FastAPI()
+
+favicon_path = 'favicon.ico'
+
+@app.get('/favicon.ico', include_in_schema=False)
+async def favicon():
+    return FileResponse(favicon_path)
 
 @app.get("/")
 async def root():
